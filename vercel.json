@@ -2,6 +2,6 @@
   "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": "storybooks/react/storybook-static",
-  "installCommand": "npm install",
+  "installCommand": "npm install --include=optional",
   "framework": null
 }

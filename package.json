@@ -14,5 +14,8 @@
     "build:storybook": "npm run build-storybook --workspace=storybooks/react",
     "build": "npm run build:tokens && npm run build:react && npm run build:storybook",
     "storybook": "npm run storybook --workspace=storybooks/react"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.61.1"
   }
 }
