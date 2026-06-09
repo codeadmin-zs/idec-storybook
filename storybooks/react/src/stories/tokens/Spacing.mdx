@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Design Tokens/Spacing" />
+
+# Spacing & Sizing Tokens
+
+<style>{`
+  .sp-row { display:flex; align-items:center; gap:16px; margin-bottom:12px; }
+  .sp-box { background:#2B4C7E; border-radius:3px; flex-shrink:0; }
+  .sp-label { font-size:13px; font-family:monospace; color:#1A2233; }
+  .sp-value { font-size:12px; color:#5B6472; }
+`}</style>
+
+## Space scale (`--mg-space-*`)
+
+{[['1','4px'],['2','8px'],['3','12px'],['4','16px'],['5','20px'],['6','24px'],['8','32px'],['10','40px'],['12','48px'],['16','64px'],['20','80px']].map(([k,v]) => (
+  <div key={k} className="sp-row">
+    <div className="sp-box" style={{ width: v, height: 16 }} />
+    <span className="sp-label">--mg-space-{k}</span>
+    <span className="sp-value">{v}</span>
+  </div>
+))}
+
+## Border Radius (`--mg-radius-*`)
+
+{[['sm','4px'],['md','8px'],['lg','12px'],['xl','16px'],['full','9999px']].map(([k,v]) => (
+  <div key={k} className="sp-row">
+    <div className="sp-box" style={{ width: 40, height: 40, borderRadius: v }} />
+    <span className="sp-label">--mg-radius-{k}</span>
+    <span className="sp-value">{v}</span>
+  </div>
+))}

@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+storybook-static/
+*.tsbuildinfo
+
+# Storybook / Vite cache
+**/.cache/
+**/.storybook-cache/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+.vscode/
+.idea/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Package manager
+*.tgz
+
+# tsup temp bundles
+*.bundled_*.mjs
+
+# Test / coverage
+coverage/

@@ -1,0 +1,18 @@
+{
+  "name": "idec-storybook",
+  "version": "1.0.0",
+  "private": true,
+  "description": "My Garage design system — React Storybook with @mygarage/react components and design tokens",
+  "workspaces": [
+    "packages/tokens",
+    "packages/react",
+    "storybooks/react"
+  ],
+  "scripts": {
+    "build:tokens": "npm run build --workspace=packages/tokens",
+    "build:react": "npm run build --workspace=packages/react",
+    "build:storybook": "npm run build-storybook --workspace=storybooks/react",
+    "build": "npm run build:tokens && npm run build:react && npm run build:storybook",
+    "storybook": "npm run storybook --workspace=storybooks/react"
+  }
+}

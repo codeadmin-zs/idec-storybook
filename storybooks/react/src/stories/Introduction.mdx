@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="My Garage Design System / Introduction" />
+
+# My Garage Design System — React
+
+A 29-component library for the My Garage fleet vehicle tracking platform, built on
+`@mygarage/design-tokens` and the `mg-*` shared CSS class vocabulary.
+
+## Quick start
+
+```bash
+npm install @mygarage/design-tokens @mygarage/react
+```
+
+```tsx
+// Import styles once at your app root
+import '@mygarage/react/styles.css';
+
+import { Button, VehicleCard, DataTable } from '@mygarage/react';
+```
+
+## Navigation
+
+The sidebar groups components into five categories:
+
+| Category | Components |
+|---|---|
+| **Primitives** | Button, IconButton, StatusBadge, Tag, Toggle, SettingsToggleRow, SearchInput |
+| **Navigation** | NavBar, SideNav, AppShell, Breadcrumbs, Tabs, DropdownMenu, DateRangePill, Pagination |
+| **Surfaces** | Card, Modal, FilterDrawer |
+| **Data Display** | DataTable, KpiStatBar, TelemetryStatTile, SegmentSummaryCard, VehicleCard |
+| **Charts & Maps** | ChartCard, DonutChart, PieChart, BarChart, LineChart, MapShell |
+
+## Design Tokens
+
+The **Tokens** section documents the color palette, spacing scale, and typography
+extracted from the production My Garage screens. Every component reads from
+`--mg-*` CSS custom properties — override them on `:root` or any container element to
+re-theme the whole system.

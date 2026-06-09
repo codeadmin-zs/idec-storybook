@@ -1,0 +1,25 @@
+import { Meta, Typeset } from '@storybook/blocks';
+
+<Meta title="Design Tokens/Typography" />
+
+# Typography Tokens
+
+<style>{`
+  .type-row { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #E1E6ED; }
+  .type-meta { font-size: 12px; color: #9AA3B0; font-family: monospace; margin-top: 4px; }
+`}</style>
+
+**Font families**
+
+| Token | Value | CSS variable |
+|---|---|---|
+| `font.sans` | `'Inter', 'Segoe UI', system-ui, sans-serif` | `--mg-font-sans` |
+| `font.mono` | `'JetBrains Mono', 'Fira Code', monospace` | `--mg-font-mono` |
+
+**Type scale (`--mg-font-size-*`)**
+
+<div className="type-row"><div style={{fontSize:'28px',fontWeight:700,color:'#1A2233',lineHeight:1.2}}>Display — 28px / 700</div><div className="type-meta">--mg-font-size-2xl · --mg-font-weight-bold · Page titles, hero numbers</div></div>
+<div className="type-row"><div style={{fontSize:'22px',fontWeight:600,color:'#1A2233',lineHeight:1.3}}>Heading 1 — 22px / 600</div><div className="type-meta">--mg-font-size-xl · --mg-font-weight-semibold · Section headings</div></div>
+<div className="type-row"><div style={{fontSize:'18px',fontWeight:600,color:'#1A2233',lineHeight:1.4}}>Heading 2 — 18px / 600</div><div className="type-meta">--mg-font-size-lg · --mg-font-weight-semibold · Card headings, table headers</div></div>
+<div className="type-row"><div style={{fontSize:'14px',fontWeight:400,color:'#1A2233',lineHeight:1.5}}>Body — 14px / 400 — The quick brown fox jumps over the lazy dog</div><div className="type-meta">--mg-font-size-sm · --mg-font-weight-normal · Default body copy</div></div>
+<div className="type-row"><div style={{fontSize:'12px',fontWeight:400,color:'#5B6472',lineHeight:1.5}}>Caption — 12px / 400 — Secondary metadata, timestamps, helper text</div><div className="type-meta">--mg-font-size-xs · --mg-font-weight-normal</div></div>

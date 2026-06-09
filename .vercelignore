@@ -1,0 +1,7 @@
+packages/angular
+packages/svelte
+packages/web-components
+storybooks/web-components
+node_modules
+**/node_modules
+**/.git

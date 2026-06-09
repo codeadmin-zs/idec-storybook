@@ -1,0 +1,53 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
+
+<Meta title="Design Tokens/Colors" />
+
+# Color Tokens
+
+All colors are available as CSS custom properties on `:root` (from `@mygarage/design-tokens`).
+Override any token to re-theme every component.
+
+## Brand & Surfaces
+
+<ColorPalette>
+  <ColorItem title="color.brand.navy900" subtitle="--mg-color-brand-navy900" colors={{ Navy900: '#16223A' }} />
+  <ColorItem title="color.brand.navy700" subtitle="--mg-color-brand-navy700" colors={{ Navy700: '#22344F' }} />
+  <ColorItem title="color.brand.primary" subtitle="--mg-color-brand-primary" colors={{ Primary: '#2B4C7E' }} />
+  <ColorItem title="color.brand.primaryHover" subtitle="--mg-color-brand-primary-hover" colors={{ PrimaryHover: '#1F3A63' }} />
+  <ColorItem title="color.surface.page"  subtitle="--mg-color-surface-page"  colors={{ Page: '#F2F4F7' }} />
+  <ColorItem title="color.surface.card"  subtitle="--mg-color-surface-card"  colors={{ Card: '#FFFFFF' }} />
+  <ColorItem title="color.surface.subtle" subtitle="--mg-color-surface-subtle" colors={{ Subtle: '#EAF1F8' }} />
+  <ColorItem title="color.border.default" subtitle="--mg-color-border-default" colors={{ Border: '#E1E6ED' }} />
+</ColorPalette>
+
+## Text
+
+<ColorPalette>
+  <ColorItem title="color.text.primary"   subtitle="--mg-color-text-primary"   colors={{ Primary:   '#1A2233' }} />
+  <ColorItem title="color.text.secondary" subtitle="--mg-color-text-secondary" colors={{ Secondary: '#5B6472' }} />
+  <ColorItem title="color.text.muted"     subtitle="--mg-color-text-muted"     colors={{ Muted:     '#9AA3B0' }} />
+  <ColorItem title="color.text.onDark"    subtitle="--mg-color-text-on-dark"   colors={{ OnDark:    '#FFFFFF' }} />
+  <ColorItem title="color.text.link"      subtitle="--mg-color-text-link"      colors={{ Link:      '#1C6FCF' }} />
+</ColorPalette>
+
+## Status Palette
+
+<ColorPalette>
+  <ColorItem title="moving / success"      subtitle="--mg-color-status-moving"       colors={{ fg: '#3FA84B', bg: '#E3F4E5' }} />
+  <ColorItem title="idle / info"           subtitle="--mg-color-status-idle"         colors={{ fg: '#2E8FE6', bg: '#E4F0FC' }} />
+  <ColorItem title="stopped / warning"     subtitle="--mg-color-status-stopped"      colors={{ fg: '#F2A33D', bg: '#FCEEDB' }} />
+  <ColorItem title="notReachable / neutral" subtitle="--mg-color-status-not-reachable" colors={{ fg: '#9AA3B0', bg: '#EDEFF2' }} />
+  <ColorItem title="critical / danger"     subtitle="--mg-color-status-critical"     colors={{ fg: '#E5484D', bg: '#FBE2E3' }} />
+  <ColorItem title="diy / accentBlue"      subtitle="--mg-color-status-diy"          colors={{ fg: '#5AA9E6', bg: '#E5F1FC' }} />
+</ColorPalette>
+
+## Chart Series
+
+<ColorPalette>
+  <ColorItem title="chart.series1" subtitle="--mg-color-chart-series1" colors={{ Series1: '#2B4C7E' }} />
+  <ColorItem title="chart.series2" subtitle="--mg-color-chart-series2" colors={{ Series2: '#2E8FE6' }} />
+  <ColorItem title="chart.series3" subtitle="--mg-color-chart-series3" colors={{ Series3: '#3FA84B' }} />
+  <ColorItem title="chart.series4" subtitle="--mg-color-chart-series4" colors={{ Series4: '#F2A33D' }} />
+  <ColorItem title="chart.series5" subtitle="--mg-color-chart-series5" colors={{ Series5: '#E5484D' }} />
+  <ColorItem title="chart.series6" subtitle="--mg-color-chart-series6" colors={{ Series6: '#5AA9E6' }} />
+</ColorPalette>
