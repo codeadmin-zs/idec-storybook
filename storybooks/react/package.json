@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -o storybook-static"
+    "build-storybook": "storybook build -o storybook-static",
+    "build": "npm run build --prefix ../../packages/tokens && npm run build --prefix ../../packages/react && npm run build-storybook"
   },
   "dependencies": {
     "@mygarage/design-tokens": "file:../../packages/tokens",
