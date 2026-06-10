@@ -49,14 +49,16 @@ export const TrackerSummary: Story = {
         </div>
       </div>
 
-      <Tabs
-        items={[
-          { key: 'map', label: 'Map View' },
-          { key: 'summary', label: 'Summary' },
-        ]}
-        activeKey="summary"
-        onChange={() => {}}
-      />
+      <div style={{ background: 'var(--mg-color-surface-page)', borderRadius: 'var(--mg-radius-md) var(--mg-radius-md) 0 0', marginTop: 'var(--mg-space-2)' }}>
+        <Tabs
+          items={[
+            { key: 'map', label: 'Map View' },
+            { key: 'summary', label: 'Summary' },
+          ]}
+          activeKey="summary"
+          onChange={() => {}}
+        />
+      </div>
 
       <div style={{ marginTop: 'var(--mg-space-5)' }}>
         <KpiStatBar tiles={kpiTiles} selectedKey="moving" onSelect={() => {}} />

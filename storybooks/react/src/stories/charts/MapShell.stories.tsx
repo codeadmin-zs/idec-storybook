@@ -22,8 +22,8 @@ type Story = StoryObj<typeof meta>;
 const MockMapBg = () => (
   <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #EAF1F8 0%, #D0E0EF 100%)' }}>
     <svg width="100%" height="100%" style={{ opacity: 0.3 }}>
-      {Array.from({ length: 8 }).map((_, i) => <line key={`h${i}`} x1="0" y1={`${i * 14}%`} x2="100%" y2={`${i * 14}%`} stroke="#2B4C7E" strokeWidth="0.5"/>)}
-      {Array.from({ length: 12 }).map((_, i) => <line key={`v${i}`} x1={`${i * 9}%`} y1="0" x2={`${i * 9}%`} y2="100%" stroke="#2B4C7E" strokeWidth="0.5"/>)}
+      {Array.from({ length: 8 }).map((_, i) => <line key={`h${i}`} x1="0" y1={`${i * 14}%`} x2="100%" y2={`${i * 14}%`} stroke="#006E74" strokeWidth="0.5"/>)}
+      {Array.from({ length: 12 }).map((_, i) => <line key={`v${i}`} x1={`${i * 9}%`} y1="0" x2={`${i * 9}%`} y2="100%" stroke="#006E74" strokeWidth="0.5"/>)}
     </svg>
   </div>
 );

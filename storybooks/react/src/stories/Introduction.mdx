@@ -1,40 +1,373 @@
 import { Meta } from '@storybook/blocks';
 
-<Meta title="My Garage Design System / Introduction" />
+<Meta title="My Garage Design System/Introduction" />
 
-# My Garage Design System — React
+<style>{`
+  .mg-docs-hero {
+    margin: 0 0 2.5rem;
+    padding: 2.5rem 2rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #16223A 0%, #006E74 100%);
+    color: #fff;
+  }
+  .mg-docs-hero h1 {
+    margin: 0 0 0.75rem;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+  }
+  .mg-docs-hero p {
+    margin: 0;
+    max-width: 52rem;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .mg-docs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .mg-docs-card {
+    padding: 1.25rem;
+    border: 1px solid #E1E6ED;
+    border-radius: 8px;
+    background: #fff;
+  }
+  .mg-docs-card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    color: #006E74;
+  }
+  .mg-docs-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #5B6472;
+  }
+  .mg-docs-callout {
+    margin: 2rem 0;
+    padding: 1.25rem 1.5rem;
+    border-left: 4px solid #006E74;
+    background: #F4F8FF;
+    border-radius: 0 6px 6px 0;
+  }
+  .mg-docs-callout strong { color: #212529; }
+  .mg-docs-layers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin: 1.25rem 0 0.5rem;
+  }
+  .mg-docs-layer {
+    padding: 1.25rem 1.35rem;
+    border: 1px solid #E1E6ED;
+    border-radius: 8px;
+    background: #fff;
+  }
+  .mg-docs-layer__badge {
+    display: inline-block;
+    margin-bottom: 0.6rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 4px;
+    background: #EAF1F8;
+    color: #006E74;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .mg-docs-layer h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+    color: #212529;
+  }
+  .mg-docs-layer p {
+    margin: 0 0 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: #5B6472;
+  }
+  .mg-docs-layer code {
+    font-size: 0.82rem;
+    color: #055C7B;
+  }
+  .mg-docs-layer ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #5B6472;
+  }
+  .mg-docs-flow {
+    margin: 1.5rem 0 2rem;
+    padding: 1rem 1.25rem;
+    background: #F2F4F7;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #5B6472;
+    text-align: center;
+  }
+  .mg-docs-flow strong { color: #212529; }
+  .mg-docs-cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 1.25rem 0 1.5rem;
+  }
+  .mg-docs-cat {
+    padding: 1.15rem 1.25rem;
+    border: 1px solid #E1E6ED;
+    border-top: 3px solid #006E74;
+    border-radius: 0 0 8px 8px;
+    background: #fff;
+  }
+  .mg-docs-cat h4 {
+    margin: 0 0 0.35rem;
+    font-size: 0.95rem;
+    color: #212529;
+  }
+  .mg-docs-cat__when {
+    margin: 0 0 0.75rem;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: #5B6472;
+  }
+  .mg-docs-cat__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+  .mg-docs-cat__list li {
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    background: #F4F8FF;
+    color: #47668D;
+    font-size: 0.78rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+`}</style>
 
-A 29-component library for the My Garage fleet vehicle tracking platform, built on
-`@mygarage/design-tokens` and the `mg-*` shared CSS class vocabulary.
+<div className="mg-docs-hero">
+  <h1>My Garage Design System</h1>
+  <p>
+    A shared language for building consistent, accessible fleet-management experiences —
+    from live vehicle tracking and product profiles to alerts, charts, and operational dashboards.
+  </p>
+</div>
 
-## Quick start
+## Why a design system?
 
-```bash
-npm install @mygarage/design-tokens @mygarage/react
-```
+Fleet platforms like **My Garage** ship dozens of screens — tracker tables, map views, filter drawers,
+vehicle cards, KPI bars, and product profile pages. Without a system, every team reinvents spacing,
+colors, and interaction patterns. Interfaces drift apart, accessibility suffers, and simple changes
+become expensive.
 
-```tsx
-// Import styles once at your app root
-import '@mygarage/react/styles.css';
+A design system solves this the same way **Material Design** and **IBM Carbon** do for their
+ecosystems: it turns repeated product decisions into **reusable foundations** (tokens) and
+**ready-made building blocks** (components) so teams can focus on fleet logic, not button styles.
 
-import { Button, VehicleCard, DataTable } from '@mygarage/react';
-```
+### What you gain
 
-## Navigation
+<div className="mg-docs-grid">
+  <div className="mg-docs-card">
+    <h3>Consistency</h3>
+    <p>
+      One source of truth for typography, color, spacing, and component behavior — so Tracker,
+      Product Profile, and Alerts feel like the same product.
+    </p>
+  </div>
+  <div className="mg-docs-card">
+    <h3>Speed</h3>
+    <p>
+      Compose screens from tested primitives instead of writing bespoke CSS. Ship tracker tables,
+      filter sidebars, and stat cards in hours, not days.
+    </p>
+  </div>
+  <div className="mg-docs-card">
+    <h3>Quality</h3>
+    <p>
+      Components are documented, interactive, and checked for accessibility in Storybook before
+      they reach production.
+    </p>
+  </div>
+  <div className="mg-docs-card">
+    <h3>Scalability</h3>
+    <p>
+      Tokens and shared <code>mg-*</code> class names let you re-theme the entire platform or
+      roll out a visual refresh from a single change.
+    </p>
+  </div>
+</div>
 
-The sidebar groups components into five categories:
+## Design principles
 
-| Category | Components |
-|---|---|
-| **Primitives** | Button, IconButton, StatusBadge, Tag, Toggle, SettingsToggleRow, SearchInput |
-| **Navigation** | NavBar, SideNav, AppShell, Breadcrumbs, Tabs, DropdownMenu, DateRangePill, Pagination |
-| **Surfaces** | Card, Modal, FilterDrawer |
-| **Data Display** | DataTable, KpiStatBar, TelemetryStatTile, SegmentSummaryCard, VehicleCard |
-| **Charts & Maps** | ChartCard, DonutChart, PieChart, BarChart, LineChart, MapShell |
+These principles guide every token and component in the library:
 
-## Design Tokens
+1. **Clarity over decoration** — Data-dense fleet UIs prioritize readable tables, clear status colors,
+   and obvious actions (filters, CTAs, side-rail icons).
+2. **Production fidelity** — Components are modeled on real My Garage screens: Tracker summary tabs,
+   Criteria filter drawers, product profile cards, and KPI status bars.
+3. **Token-first styling** — Visual properties live in <code>@mygarage/design-tokens</code> as
+   <code>--mg-*</code> CSS variables. Components consume tokens; they do not hard-code brand values.
+4. **Composable layouts** — Primitives combine into patterns: <code>AppShell</code> + <code>SideNav</code> +
+   <code>DataTable</code> + <code>FilterDrawer</code> for a full tracker page.
+5. **Accessible by default** — Semantic HTML, keyboard support, and WCAG-oriented checks in Storybook.
 
-The **Tokens** section documents the color palette, spacing scale, and typography
-extracted from the production My Garage screens. Every component reads from
-`--mg-*` CSS custom properties — override them on `:root` or any container element to
-re-theme the whole system.
+## What's in the system?
+
+The design system is made of **three layers**. Each layer has a different job — you typically use
+all three together in a React app.
+
+<div className="mg-docs-layers">
+  <div className="mg-docs-layer">
+    <span className="mg-docs-layer__badge">Layer 1 — Foundation</span>
+    <h3>Design tokens</h3>
+    <p>
+      The visual rules of the product: colors, fonts, spacing, border radius, shadows, and motion.
+      Published as CSS variables you can use anywhere.
+    </p>
+    <p><strong>Package:</strong> <code>@mygarage/design-tokens</code></p>
+    <ul>
+      <li>Import as <code>@mygarage/design-tokens/css</code></li>
+      <li>Override <code>--mg-*</code> variables to re-theme</li>
+      <li>Documented under <strong>Design Tokens</strong> in the sidebar</li>
+    </ul>
+  </div>
+  <div className="mg-docs-layer">
+    <span className="mg-docs-layer__badge">Layer 2 — Building blocks</span>
+    <h3>React components</h3>
+    <p>
+      Ready-made UI for fleet screens — tables, nav bars, filter drawers, vehicle cards, charts, and more.
+      Each component reads from design tokens so styling stays consistent.
+    </p>
+    <p><strong>Package:</strong> <code>@mygarage/react</code></p>
+    <ul>
+      <li>Import components by name from the package</li>
+      <li>Import <code>@mygarage/react/styles.css</code> once at app root</li>
+      <li>30 components across 5 categories (see below)</li>
+    </ul>
+  </div>
+  <div className="mg-docs-layer">
+    <span className="mg-docs-layer__badge">Layer 3 — Reference</span>
+    <h3>Storybook documentation</h3>
+    <p>
+      This site. Every component has live examples, prop controls, and accessibility checks so you
+      can see exactly how it behaves before using it in production.
+    </p>
+    <p><strong>Includes:</strong> Introduction, Developer Guide, component stories, token pages</p>
+    <ul>
+      <li>Try variants in the <strong>Canvas</strong> tab</li>
+      <li>Read API docs in the <strong>Docs</strong> tab</li>
+      <li>Check a11y in the <strong>Accessibility</strong> panel</li>
+    </ul>
+  </div>
+</div>
+
+<div className="mg-docs-flow">
+  <strong>How they connect:</strong> Tokens define the look → Components apply tokens to fleet UI →
+  Storybook documents and validates both.
+</div>
+
+## Component categories
+
+Components are grouped in the sidebar by **what job they do on a fleet screen**, not by technology.
+Pick a category based on the part of the UI you are building.
+
+<div className="mg-docs-cat-grid">
+  <div className="mg-docs-cat">
+    <h4>Primitives</h4>
+    <p className="mg-docs-cat__when">
+      Small, reusable controls and labels used inside larger components — buttons, badges, inputs, toggles.
+    </p>
+    <ul className="mg-docs-cat__list">
+      <li>Button</li>
+      <li>IconButton</li>
+      <li>StatusBadge</li>
+      <li>Tag</li>
+      <li>Toggle</li>
+      <li>SettingsToggleRow</li>
+      <li>SearchInput</li>
+    </ul>
+  </div>
+  <div className="mg-docs-cat">
+    <h4>Navigation</h4>
+    <p className="mg-docs-cat__when">
+      Page structure, wayfinding, and moving between views — top bar, side menu, tabs, breadcrumbs, pagination.
+    </p>
+    <ul className="mg-docs-cat__list">
+      <li>NavBar</li>
+      <li>SideNav</li>
+      <li>AppShell</li>
+      <li>Tabs</li>
+      <li>Breadcrumbs</li>
+      <li>DropdownMenu</li>
+      <li>DateRangePill</li>
+      <li>Pagination</li>
+    </ul>
+  </div>
+  <div className="mg-docs-cat">
+    <h4>Surfaces</h4>
+    <p className="mg-docs-cat__when">
+      Containers and overlays that hold content or capture user input — cards, dialogs, filter panels.
+    </p>
+    <ul className="mg-docs-cat__list">
+      <li>Card</li>
+      <li>Modal</li>
+      <li>FilterDrawer</li>
+    </ul>
+  </div>
+  <div className="mg-docs-cat">
+    <h4>Data display</h4>
+    <p className="mg-docs-cat__when">
+      Fleet-specific data presentation — tracker tables, KPI status bars, vehicle and product profile cards.
+    </p>
+    <ul className="mg-docs-cat__list">
+      <li>DataTable</li>
+      <li>KpiStatBar</li>
+      <li>TelemetryStatTile</li>
+      <li>SegmentSummaryCard</li>
+      <li>VehicleCard</li>
+      <li>ProductProfileCard</li>
+    </ul>
+  </div>
+  <div className="mg-docs-cat">
+    <h4>Charts &amp; maps</h4>
+    <p className="mg-docs-cat__when">
+      Visual summaries and geographic views — bar/line/donut/pie charts and map shells with overlays.
+    </p>
+    <ul className="mg-docs-cat__list">
+      <li>ChartCard</li>
+      <li>BarChart</li>
+      <li>LineChart</li>
+      <li>DonutChart</li>
+      <li>PieChart</li>
+      <li>MapShell</li>
+    </ul>
+  </div>
+</div>
+
+**Not sure where to start?** Open **Navigation → AppShell → TrackerSummary** for a full page built
+from multiple categories, or go to **Developer Guide** for step-by-step setup.
+
+## Who is this for?
+
+- **Developers** — Install packages, import styles once, compose components. See the
+  **[Developer Guide](./?path=/docs/my-garage-design-system-developer-guide--docs)** for setup,
+  theming, and composition patterns.
+- **Designers** — Use tokens and Storybook stories as the canonical reference when specifying
+  new fleet screens.
+- **Product & engineering leads** — A single catalog of what exists, reducing duplicate work
+  across squads.
+
+<div className="mg-docs-callout">
+  <strong>Ready to build?</strong> Head to the Developer Guide for installation steps, code
+  examples, and guidance on composing full application layouts.
+</div>

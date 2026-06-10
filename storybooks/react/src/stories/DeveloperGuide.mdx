@@ -1,0 +1,328 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="My Garage Design System/Developer Guide" />
+
+<style>{`
+  .mg-dev-steps {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+  }
+  .mg-dev-steps li {
+    counter-increment: step;
+    position: relative;
+    padding: 0 0 1.5rem 2.75rem;
+    border-left: 2px solid #E1E6ED;
+    margin-left: 0.9rem;
+  }
+  .mg-dev-steps li:last-child { border-left-color: transparent; padding-bottom: 0; }
+  .mg-dev-steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: -0.9rem;
+    top: 0;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    background: #006E74;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mg-dev-steps h4 { margin: 0 0 0.35rem; font-size: 1rem; }
+  .mg-dev-steps p { margin: 0 0 0.75rem; color: #5B6472; font-size: 0.92rem; line-height: 1.5; }
+  .mg-dev-note {
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+    background: #F2F4F7;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+`}</style>
+
+# Developer Guide
+
+This guide explains how to adopt the My Garage design system in a React application — from
+installation through theming and full-page composition.
+
+---
+
+## Prerequisites
+
+- **React 18+** and a bundler (Vite, Webpack, Next.js, etc.)
+- **Node.js 18+** for package management
+
+---
+
+## Installation
+
+Install the token package and React component library:
+
+```bash
+npm install @mygarage/design-tokens @mygarage/react
+```
+
+If you are working inside the `idec-storybook` monorepo, build packages first:
+
+```bash
+# from repository root
+npm run build:tokens
+npm run build:react
+```
+
+---
+
+## Quick start
+
+<ol className="mg-dev-steps">
+  <li>
+    <h4>Import styles at your app entry point</h4>
+    <p>Load tokens first, then component styles. Order matters — tokens define the <code>--mg-*</code> variables components rely on.</p>
+
+```tsx
+// main.tsx or _app.tsx
+import '@mygarage/design-tokens/css';
+import '@mygarage/react/styles.css';
+```
+
+  </li>
+  <li>
+    <h4>Load fonts (recommended)</h4>
+    <p>Production My Garage uses Inter for UI text and Roboto for table headers. Add Google Fonts or your own hosted files:</p>
+
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Flex:opsz,wght@8..144,400;8..144,500&family=Roboto:wght@400;500;600;700&display=swap" />
+```
+
+  </li>
+  <li>
+    <h4>Wrap your app in the root scope</h4>
+    <p>The <code>mg-root</code> class applies base font and text color from tokens.</p>
+
+```tsx
+export function App() {
+  return (
+    <div className="mg-root">
+      <YourRoutes />
+    </div>
+  );
+}
+```
+
+  </li>
+  <li>
+    <h4>Import and render components</h4>
+    <p>All components are tree-shakeable named exports from <code>@mygarage/react</code>.</p>
+
+```tsx
+import {
+  AppShell,
+  Button,
+  DataTable,
+  FilterDrawer,
+  KpiStatBar,
+  NavBar,
+  ProductProfileCard,
+  SideNav,
+  Tabs,
+} from '@mygarage/react';
+```
+
+  </li>
+</ol>
+
+---
+
+## Using design tokens
+
+Tokens are published as CSS custom properties. Use them in your own styles when you need
+layout or typography that matches the system without reaching for a component.
+
+```css
+.my-fleet-panel {
+  background: var(--mg-color-surface-card);
+  border: 1px solid var(--mg-color-border-default);
+  border-radius: var(--mg-radius-md);
+  padding: var(--mg-space-4);
+  color: var(--mg-color-text-primary);
+  font-family: var(--mg-font-family-base);
+}
+```
+
+### Re-theming
+
+Override any token on <code>:root</code> or a scoped container to re-theme components beneath it:
+
+```css
+:root {
+  --mg-color-brand-primary: #006E74;
+  --mg-color-button-primary: #055C7B;
+}
+```
+
+See **Design Tokens → Colors, Typography, Spacing** in the sidebar for the full reference.
+
+### Token formats
+
+| Import path | Format |
+|---|---|
+| `@mygarage/design-tokens/css` | CSS custom properties (`:root { --mg-* }`) |
+| `@mygarage/design-tokens/scss` | SCSS variables |
+| `@mygarage/design-tokens` | JS/TS nested object + flat map |
+
+---
+
+## Composing a screen
+
+Fleet pages are built by composing layout shells with data components. A Tracker summary page
+typically looks like this:
+
+```tsx
+<AppShell
+  navBar={<NavBar /* brand, live status, user menu */ />}
+  sideNav={<SideNav items={navItems} activeKey="tracker" onSelect={setRoute} />}
+>
+  <header className="mg-page-header">
+    <h1 className="mg-page-header__title">Tracker</h1>
+    <div className="mg-page-header__actions">
+      <DateRangePill from="..." to="..." onClick={openPicker} />
+      <IconButton label="Filter" onClick={() => setFilterOpen(true)}>
+        <FilterIcon />
+      </IconButton>
+    </div>
+  </header>
+
+  <Tabs items={tabItems} activeKey="summary" onChange={setTab} />
+
+  <KpiStatBar tiles={statusTiles} selectedKey="moving" onSelect={setFilter} />
+
+  <DataTable
+    columns={columns}
+    data={rows}
+    rowKey="id"
+    toolbar={{ showRecords: true }}
+    pagination={{ page: 1, pageSize: 25, total: rows.length }}
+  />
+
+  <FilterDrawer open={filterOpen} onClose={() => setFilterOpen(false)} title="Criteria">
+    {/* grouped checkbox filters */}
+  </FilterDrawer>
+</AppShell>
+```
+
+Explore **Navigation → AppShell → TrackerSummary** in Storybook for a working reference implementation.
+
+### Product profile page
+
+For individual vehicle/product detail, use <code>ProductProfileCard</code> with property labels,
+a side action rail (CTA + info icons), and bottom metric tiles:
+
+```tsx
+<ProductProfileCard
+  productId="AB2V7PRT0RH118134"
+  title="UST - ProDrive X2025 -"
+  status={{ tone: 'notReachable' }}
+  labels={[
+    { key: 'diesel', label: 'Diesel' },
+    { key: 'status', label: 'Not Reachable', tone: 'neutral' },
+  ]}
+  sideActions={[
+    { key: 'docs', icon: <DocIcon />, label: 'Documents', variant: 'cta' },
+    { key: 'tools', icon: <ToolsIcon />, label: 'Maintenance', variant: 'info' },
+  ]}
+  metrics={[
+    { key: 'distance', label: 'Distance', value: '101.51 km' },
+    { key: 'hours', label: 'Operating Hour', value: '0 Hrs' },
+  ]}
+/>
+```
+
+---
+
+## Component conventions
+
+### CSS class vocabulary
+
+Components use a shared <code>mg-*</code> BEM-style class prefix. You can:
+
+- **Use React components** (recommended) — props map to the correct markup and classes.
+- **Use classes directly** — for custom markup in legacy code, apply the same classes documented in each story.
+
+### TypeScript
+
+All public props are exported as interfaces from <code>@mygarage/react</code>:
+
+```tsx
+import type { DataTableProps, TabItem, StatusTone } from '@mygarage/react';
+```
+
+### Status tones
+
+Status-driven UI (<code>StatusBadge</code>, KPI tiles, table accents) uses a shared
+<code>StatusTone</code> union: <code>moving</code>, <code>idle</code>, <code>stopped</code>,
+<code>notReachable</code>, <code>critical</code>, and others. Match production semantics —
+do not invent one-off colors per screen.
+
+### Data tables
+
+<code>DataTable</code> accepts <code>rowKey</code> as a string field name or a function.
+Column definitions support custom cell renderers and link styling via <code>mg-table__link</code>.
+
+---
+
+## Local development (monorepo)
+
+To run this Storybook and iterate on components:
+
+```bash
+# from design-system root
+npm install
+npm run build:tokens
+npm run build:react
+
+cd storybooks/react
+npm install
+npm run storybook    # http://localhost:6006
+```
+
+After changing component source in <code>packages/react</code>, rebuild:
+
+```bash
+npm run build:react
+```
+
+Storybook hot-reloads story files; package changes require a rebuild unless you use
+<code>npm run dev</code> in <code>packages/react</code> alongside Storybook.
+
+---
+
+## Accessibility
+
+- Use provided components rather than re-styling native elements — labels, roles, and focus
+  states are built in.
+- Run the **Accessibility** panel in Storybook when adding new stories.
+- Ensure icon-only controls always have an <code>aria-label</code> (see <code>IconButton</code>).
+
+---
+
+## Checklist for new features
+
+Before shipping a new fleet screen, verify:
+
+- [ ] Styles imported once at app root (<code>design-tokens/css</code> + <code>react/styles.css</code>)
+- [ ] Layout uses <code>mg-root</code> and existing shell components where applicable
+- [ ] Colors and spacing come from <code>--mg-*</code> tokens, not hard-coded hex values
+- [ ] Status colors use <code>StatusTone</code> — not arbitrary greens or reds
+- [ ] Interactive states (hover, focus, disabled) match Storybook examples
+- [ ] Story added or updated if introducing a new reusable pattern
+
+<div className="mg-dev-note">
+  <strong>Need a component that does not exist yet?</strong> Check Storybook first — many fleet
+  patterns (filter drawer, KPI bar, product profile card) are already modeled. If something is
+  missing, extend <code>@mygarage/react</code> and add a story so the whole team benefits.
+</div>

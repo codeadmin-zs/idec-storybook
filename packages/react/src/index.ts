@@ -14,6 +14,7 @@ export * from './components/DropdownMenu';
 export * from './components/ChartCard';
 export * from './components/MapShell';
 export * from './components/VehicleCard';
+export * from './components/ProductProfileCard';
 export * from './components/TelemetryStatTile';
 export * from './components/SegmentSummaryCard';
 export * from './components/AppShell';
